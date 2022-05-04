@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, Spinner } from 'react-bootstrap';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const SIgnUp = () => {
@@ -9,6 +9,7 @@ const SIgnUp = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate();
+
     const [
       createUserWithEmailAndPassword,
       user,
@@ -16,18 +17,20 @@ const SIgnUp = () => {
       error,
     ] = useCreateUserWithEmailAndPassword(auth);
 
-    if (error) {
+    const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
+
+    if (error || error1) {
         return (
           <div>
-            <p className="text-danger">Error: {error.message}</p>
+            <p className="text-danger">Error: {error?.message  || error1?.message}</p>
           </div>
         );
     }
 
-    if(user){
+    if(user || user1){
         navigate("/home");
     }
-    if(loading){
+    if(loading || loading1){
         return (
             <Spinner animation="border" role="status">
                  <span className="visually-hidden">Loading...</span>
@@ -36,15 +39,22 @@ const SIgnUp = () => {
     }
     
     const handleCreateUser = (event) => {
-        if(password != confirmPassword) {
-            return(
-              <div>
-                <p className="text-danger">Please, type password again</p>
-              </div>)
+        if(password === confirmPassword) {
+           event.preventDefault()
+           createUserWithEmailAndPassword(email, password)
         }
+        else{
+            return(
+                <div>
+                  <p className="text-danger">Please, type password again</p>
+                </div>)
+        }
+        
+    }
 
-        event.preventDefault()
-        createUserWithEmailAndPassword(email, password)
+    const handleCreateUserGoggle = (event) => {
+        // event.preventDefault()
+        signInWithGoogle();
     }
   
     return (
@@ -66,15 +76,24 @@ const SIgnUp = () => {
                     <Form.Control onBlur={(e) => setConfirmPassword(e.target.value)} className="d-block w-50 mx-auto" type="password" placeholder="Password" />
                 </Form.Group>
 
-                <Button onClick={handleCreateUser} className="d-block w-25 mx-auto" variant="dark" type="submit">
+                <Button onClick={handleCreateUser} className="d-block mx-auto" variant="dark" type="submit">
                     Create Account
                 </Button>
            </Form>
 
            
            <hr className="mt-5 border border-dark border-3" />
+           <h2 className="text-bold text-center">Or</h2>
+           <hr className=" border border-dark border-3" />
 
-           
+        <div>
+          <Button onClick={handleCreateUserGoggle} className="d-block w-25 mx-auto mt-5" variant="dark" type="submit">
+                    Sign In With Google
+          </Button>
+        </div>
+        
+        <p className="ms-5 mt-5 mb-5">Already have an account? <Link className="text-decoration-none" to="/login">Click here</Link></p>
+
         </div>
     );
 };
