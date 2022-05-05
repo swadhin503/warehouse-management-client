@@ -1,44 +1,83 @@
 [
     {
-        "id": 1,
-        "name": "ENGINE DIAGNOSTIC",
-        "price": "300",
-        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
-        "img": "https://i.ibb.co/dGDkr4v/1.jpg"
+        "name": "HP Pavilion Gaming Laptop",
+        "price": "3600",
+        "description":"Best for gaming",
+        "quantity": "50",
+        "supplier_name": "HP Productions",
+        "img": "https://ibb.co/WDdCQbQ"
     },
+    
     {
-        "id": 2,
-        "name": "WHEEL ALIGNMENT",
-        "price": "100",
-        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
-        "img": "https://i.ibb.co/tY8dmnP/2.jpg"
+        "name": "Spacious HP 17",
+        "price": "4800",
+        "description":"Core i5 . Good for gaming",
+        "quantity": "60",
+        "supplier_name": "HP Productions",
+        "img": "https://ibb.co/WyBx7RR"
     },
+    
     {
-        "id": 3,
-        "name": "OIL CHANGING",
-        "price": "150",
-        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
-        "img": "https://i.ibb.co/Yh04YVw/3.jpg"
+        "name": "HP Laptop 14-dq23",
+        "price": "3699",
+        "description":"This one is for programmers",
+        "quantity": "60",
+        "supplier_name": "HP Productions",
+        "img": "https://ibb.co/mhgFZ9s"
     },
+    
     {
-        "id": 4,
-        "name": "BRAKE REPARING",
-        "price": "180",
-        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
-        "img": "https://i.ibb.co/ZX2Cbkn/4.jpg"
+        "name": "Intel Core i7",
+        "price": "5000",
+        "description":"11th generation laptop Intel Core i7",
+        "quantity": "70",
+        "supplier_name": "Intel Productions",
+        "img": "https://i.ibb.co/bFBzY4G/laptop-4.jpg"
     },
+    
     {
-        "id": 5,
-        "name": "WASH AND GLASSING",
-        "price": "100",
-        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
-        "img": "https://i.ibb.co/FgQ3jXp/5.jpg"
+        "name": "HP Notebook",
+        "price": "4500",
+        "description":"11th generation notebook core i5",
+        "quantity": "50",
+        "supplier_name": "Intel Productions",
+        "img": "https://i.ibb.co/khHjYxG/laptop-5.png"
     },
+    
     {
-        "id": 6,
-        "name": "COMPLETE ANALYSIS",
-        "price": "300",
-        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa",
-        "img": "https://i.ibb.co/zJy5ZDd/6.jpg"
+        "name": "HUAWEI h2-gh34",
+        "price": "3690",
+        "description":"Latest HUAWEI laptop with great designs",
+        "quantity": "50",
+        "supplier_name": "HUAWEI",
+        "img": "https://i.ibb.co/74Jvd9T/laptop-6.png"
+    },
+    
+    {
+        "name": "HUAWEI MateBook X pro",
+        "price": "4700",
+        "description":"This products are well designed and good in use",
+        "quantity": "50",
+        "supplier_name": "HUAWEI",
+        "img": "https://i.ibb.co/CJwkmFr/laptop-7.jpg"
+    },
+    
+    {
+        "name": "HUAWEI core i7",
+        "price": "3000",
+        "description":"The best laptops for students",
+        "quantity": "50",
+        "supplier_name": "HUAWEI",
+        "img": "https://i.ibb.co/Ypj8Gw3/laptop-8.jpg"
+    },
+    
+    {
+        "name": "ACER X pro",
+        "price": "6900",
+        "description":"Best products of 2022",
+        "quantity": "80",
+        "supplier_name": "ACER",
+        "img": "https://i.ibb.co/LxyMcRs/laptop-9.jpg"
     }
+    
 ]
