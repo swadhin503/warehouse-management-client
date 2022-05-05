@@ -10,6 +10,7 @@ import SIgnUp from './components/SignUp/SIgnUp';
 import ManageItems from './components/ManageItems/ManageItems';
 import AddItems from './components/AddItems/AddItems';
 import MyItems from './components/MyItems/MyItems';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/addItems" element={<AddItems></AddItems>}></Route>
         <Route path="/myItems" element={<MyItems></MyItems>}></Route>
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }

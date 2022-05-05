@@ -3,6 +3,8 @@ import { Button, Form, Spinner } from 'react-bootstrap';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -17,15 +19,20 @@ const Login = () => {
     ] = useSignInWithEmailAndPassword(auth);
 
     const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
+
+    const [sendPasswordResetEmail, sending, error2] = useSendPasswordResetEmail(
+        auth
+      );
+
     let showError;
-    if (error || error1) {
-         showError =  <p className="text-danger text-center">Error: {error?.message  || error1?.message}</p>
+    if (error || error1 || error2) {
+         showError =  <p className="text-danger text-center">Error: {error?.message  || error1?.message || error2?.message}</p>;
     }
 
     if(user || user1){
         navigate("/home");
     }
-    if(loading || loading1){
+    if(loading || loading1 || sending){
         return (
             <div className="d-flex align-items-center justify-content-center mt-5">
                 <Spinner className="mt-5"  animation="border" role="status">
@@ -48,6 +55,9 @@ const Login = () => {
   
     return (
         <div>
+            <div className="position-relative">
+                <ToastContainer className="position-absolute top-0 end-0"></ToastContainer>
+            </div>
             <h1 className="text-center text-dark text-bold mt-5">Laptop's Warehouse</h1>
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -65,6 +75,15 @@ const Login = () => {
                 <Button onClick={handleCreateUser} className="d-block mx-auto" variant="dark" type="submit">
                     Login
                 </Button>
+                  <p className="ms-2 mt-5">Forget Password?  <Button variant="dark"
+                onClick={async () => {
+                    
+                await sendPasswordResetEmail(email);
+                toast("Email sent !!!");
+                }}
+               >
+                Reset password
+            </Button></p>
            </Form>
 
            

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Form, Spinner } from 'react-bootstrap';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const SIgnUp = () => {
@@ -9,6 +10,8 @@ const SIgnUp = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate();
+
+    const [sendEmailVerification, sending, error2] = useSendEmailVerification(auth);
 
     const [
       createUserWithEmailAndPassword,
@@ -20,14 +23,14 @@ const SIgnUp = () => {
     const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
     
     let showError;
-    if (error || error1) {
-        showError =  <p className="text-danger">Error: {error?.message  || error1?.message}</p>
+    if (error || error1 || error2) {
+        showError =  <p className="text-danger text-center">Error: {error?.message  || error1?.message || error2?.message}</p>
     }
 
     if(user || user1){
         navigate("/home");
     }
-    if(loading || loading1){
+    if(loading || loading1 || sending){
         return (
             <div className="d-flex align-items-center justify-content-center mt-5">
                 <Spinner className="mt-5"  animation="border" role="status">
@@ -58,6 +61,9 @@ const SIgnUp = () => {
   
     return (
         <div>
+            <div className="position-relative">
+                <ToastContainer className="position-absolute top-0 end-0"></ToastContainer>
+            </div>
             <h1 className="text-center text-dark text-bold mt-5">Sign Up</h1>
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -79,6 +85,15 @@ const SIgnUp = () => {
                 <Button onClick={handleCreateUser} className="d-block mx-auto" variant="dark" type="submit">
                     Create Account
                 </Button>
+                <p className="ms-2 mt-5">Please, Verify Your Email  <Button variant="dark"
+                onClick={async () => {
+                    
+                await sendEmailVerification();
+                toast("Email sent !!!");
+                }}
+               >
+                Verify Email
+            </Button></p>
            </Form>
 
            
