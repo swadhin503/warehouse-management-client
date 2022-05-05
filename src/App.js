@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header/Header';
 import { Route, Routes } from 'react-router-dom';
@@ -8,6 +7,9 @@ import Blogs from './components/Blogs/Blogs';
 import AboutUs from './components/AboutUs/AboutUs';
 import Login from './components/Login/Login';
 import SIgnUp from './components/SignUp/SIgnUp';
+import ManageItems from './components/ManageItems/ManageItems';
+import AddItems from './components/AddItems/AddItems';
+import MyItems from './components/MyItems/MyItems';
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
         <Route path="/aboutus" element={<AboutUs></AboutUs>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<SIgnUp></SIgnUp>}></Route>
+        <Route path="/manageItems" element={<ManageItems></ManageItems>}></Route>
+        <Route path="/addItems" element={<AddItems></AddItems>}></Route>
+        <Route path="/myItems" element={<MyItems></MyItems>}></Route>
       </Routes>
     </div>
   );

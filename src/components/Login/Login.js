@@ -17,13 +17,9 @@ const Login = () => {
     ] = useSignInWithEmailAndPassword(auth);
 
     const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
-
+    let showError;
     if (error || error1) {
-        return (
-          <div>
-            <p className="text-danger">Error: {error?.message  || error1?.message}</p>
-          </div>
-        );
+         showError =  <p className="text-danger text-center">Error: {error?.message  || error1?.message}</p>
     }
 
     if(user || user1){
@@ -31,17 +27,18 @@ const Login = () => {
     }
     if(loading || loading1){
         return (
-            <Spinner animation="border" role="status">
+            <div className="d-flex align-items-center justify-content-center mt-5">
+                <Spinner className="mt-5"  animation="border" role="status">
                  <span className="visually-hidden">Loading...</span>
-            </Spinner>
+                </Spinner>
+            </div>
         )
     }
     
     const handleCreateUser = (event) => {
            event.preventDefault()
-           signInWithEmailAndPassword(email, password)
-       
-        
+           signInWithEmailAndPassword(email, password);
+            
     }
 
     const handleCreateUserGoggle = (event) => {
@@ -63,6 +60,7 @@ const Login = () => {
                     <Form.Control onBlur={(e) => setPassword(e.target.value)} className="d-block w-50 mx-auto" type="password" placeholder="Password" />
                 </Form.Group>
 
+                {showError}
 
                 <Button onClick={handleCreateUser} className="d-block mx-auto" variant="dark" type="submit">
                     Login

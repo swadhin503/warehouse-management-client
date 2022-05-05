@@ -18,13 +18,10 @@ const SIgnUp = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
 
     const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
-
+    
+    let showError;
     if (error || error1) {
-        return (
-          <div>
-            <p className="text-danger">Error: {error?.message  || error1?.message}</p>
-          </div>
-        );
+        showError =  <p className="text-danger">Error: {error?.message  || error1?.message}</p>
     }
 
     if(user || user1){
@@ -32,9 +29,11 @@ const SIgnUp = () => {
     }
     if(loading || loading1){
         return (
-            <Spinner animation="border" role="status">
-                 <span className="visually-hidden">Loading...</span>
-            </Spinner>
+            <div className="d-flex align-items-center justify-content-center mt-5">
+                <Spinner className="mt-5"  animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+            </div>
         )
     }
     
@@ -53,7 +52,7 @@ const SIgnUp = () => {
     }
 
     const handleCreateUserGoggle = (event) => {
-        // event.preventDefault()
+        event.preventDefault()
         signInWithGoogle();
     }
   
@@ -75,6 +74,7 @@ const SIgnUp = () => {
                     <h6 className="text-center">Confirm Password</h6>
                     <Form.Control onBlur={(e) => setConfirmPassword(e.target.value)} className="d-block w-50 mx-auto" type="password" placeholder="Password" />
                 </Form.Group>
+                {showError}
 
                 <Button onClick={handleCreateUser} className="d-block mx-auto" variant="dark" type="submit">
                     Create Account
