@@ -1,0 +1,9 @@
+.item-height{
+    height: 400px;
+    box-shadow: 5px 10px 5px rgb(137, 131, 131);
+    border: 2px solid black;
+}
+.item-height img{
+    /* width: 250px; */
+    height: 300px;
+}
