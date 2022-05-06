@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, Spinner } from 'react-bootstrap';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import { ToastContainer, toast } from 'react-toastify';
@@ -10,6 +10,8 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const [
       signInWithEmailAndPassword,
@@ -30,13 +32,12 @@ const Login = () => {
     }
 
     if(user || user1){
-        navigate("/home");
+        navigate(from, {replace:true});
     }
     if(loading || loading1 || sending){
         return (
-            <div className="d-flex align-items-center justify-content-center mt-5">
+            <div style={{height: '400px'}} className="d-flex align-items-center justify-content-center mt-5">
                 <Spinner className="mt-5"  animation="border" role="status">
-                 <span className="visually-hidden">Loading...</span>
                 </Spinner>
             </div>
         )

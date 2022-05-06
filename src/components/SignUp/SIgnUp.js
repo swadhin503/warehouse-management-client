@@ -32,9 +32,9 @@ const SIgnUp = () => {
     }
     if(loading || loading1 || sending){
         return (
-            <div className="d-flex align-items-center justify-content-center mt-5">
-                <Spinner className="mt-5"  animation="border" role="status">
-                    <span className="visually-hidden">Loading...</span>
+            <div style={{height: '400px'}} className="d-flex align-items-center justify-content-center mt-5">
+                <Spinner  animation="border" role="status">
+                    
                 </Spinner>
             </div>
         )
