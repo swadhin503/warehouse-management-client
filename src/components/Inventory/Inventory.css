@@ -1,0 +1,9 @@
+.input-border{
+    border: 2px solid rgb(176, 143, 143);
+    border-radius:20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.item-container1{
+    margin-left: -20px;
+}

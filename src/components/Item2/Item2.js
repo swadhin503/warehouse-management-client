@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import './Item2.css'
 
 const Item2 = ({item}) => {
-    const {img,name,quantity,description,price,supplier_name} = item;
+    const {_id,img,name,quantity,description,price,supplier_name} = item;
     const navigate = useNavigate();
-    const handleNavigate= ()=>{
-        navigate('/inventory/:id')
+    const handleNavigate= (id)=>{
+        navigate(`/inventory/${id}`)
     }
     return (
         <div className="col-lg-4 col-md-6 col-12 g-4">
@@ -22,7 +22,7 @@ const Item2 = ({item}) => {
                     <br />
                     Supplier Name: {supplier_name}
                     </Card.Text>
-                    <Button onClick={handleNavigate} variant="dark">Stock Update</Button>
+                    <Button onClick={()=>handleNavigate(_id)} variant="dark">Stock Update</Button>
                 </Card.Body>
             </Card>
         </div>

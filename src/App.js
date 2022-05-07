@@ -15,6 +15,7 @@ import NotFound from './components/NotFound/NotFound';
 import Inventory from './components/Inventory/Inventory';
 import RequireAuth from './components/RequireAuth/RequireAuth';
 
+
 function App() {
   return (
     <div>

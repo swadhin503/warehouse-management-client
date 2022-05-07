@@ -16,7 +16,7 @@ const Item = ({item}) => {
                     Quantity: {quantity} <br />
                     Price: ${price}
                     </Card.Text>
-                    <Button variant="dark">Go somewhere</Button>
+                    <Button variant="dark">Delete</Button>
                 </Card.Body>
             </Card>
         </div>

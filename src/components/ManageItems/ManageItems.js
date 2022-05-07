@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import Item from '../Item/Item';
 
 const ManageItems = () => {
@@ -10,6 +12,10 @@ const ManageItems = () => {
         .then(data => setItems(data))
     },[])
     // console.log(items)
+    const navigate = useNavigate();
+    const handleNavigate= () => {
+        navigate('/addItems');
+    }
     return (
         <div className="container">
             <h1 className="text-center mt-3">Our Items</h1>
@@ -21,6 +27,9 @@ const ManageItems = () => {
                     ></Item>)
                 }
             </div>
+            <Button onClick={handleNavigate}  className="d-block mx-auto mt-5" variant="dark" type="submit">
+                        Add New Item
+            </Button>
         </div>
     );
 };

@@ -1,0 +1,11 @@
+.input-field{
+    border: 2px solid rgb(199, 142, 142);
+    border-radius:20px;
+}
+.input-btn{
+    border: 2px solid rgb(54, 49, 49);
+    background-color:black;
+    color: white;
+    padding: 5px;
+    border-radius:15px;
+}
