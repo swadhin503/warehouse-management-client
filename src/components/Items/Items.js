@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import useItems from '../hooks/useItems';
 import Item2 from '../Item2/Item2';
 
 const Items = () => {
-    const [items,setItems] = useState([]);
-
-    useEffect(()=>{
-        fetch('http://localhost:5000/items')
-        .then(res => res.json())
-        .then(data => setItems(data))
-    },[])
+    const [items] = useItems();
 
     const navigate = useNavigate();
     const handleNavigate= () => {

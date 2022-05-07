@@ -13,13 +13,24 @@ const Inventory = () => {
     },[])
     const {img,description,supplier_name,name,quantity,price} = item;
 
-    fetch(`http://localhost:5000/items/${id}`,{
-        method: 'PUT',
-        headers: {
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify()
-    })
+    const handleDeliver = (item,id) =>{
+        const newQuantity = parseInt(item.quantity)-1;
+        const updatedQuantity = {newQuantity};
+        // console.log(updatedQuantity);
+        fetch(`http://localhost:5000/items/${id}`,{
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(updatedQuantity)
+        })
+        .then(res => res.json())
+        .then(result => {
+            console.log(result)
+            alert('Updated Successfully');
+        })
+    }
+   
     const navigate = useNavigate();
     const handleNavigate= () => {
         navigate('/manageItems');
@@ -42,7 +53,7 @@ const Inventory = () => {
                                 <br />
                                 Supplier Name: {supplier_name}
                                 </Card.Text>
-                                <Button className="d-block mx-auto" variant="dark">Delivered</Button>
+                                <Button onClick={()=>handleDeliver(item,id)} className="d-block mx-auto" variant="dark">Delivered</Button>
                             </Card.Body>
                         </Card>
                     </div> 

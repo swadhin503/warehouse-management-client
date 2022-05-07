@@ -4,6 +4,7 @@ import img1 from '../../images/banner-1.jpg'
 import img2 from '../../images/banner-2.jpg'
 import img3 from '../../images/banner-3.jpg'
 import Items from '../Items/Items';
+import LineChartComp from '../LineChartComp/LineChartComp';
 
 const Home = () => {
     
@@ -48,6 +49,7 @@ const Home = () => {
             </Carousel>
 
           <Items></Items>
+          <LineChartComp></LineChartComp>
         </div>
     );
 };
