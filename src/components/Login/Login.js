@@ -32,9 +32,9 @@ const Login = () => {
          showError =  <p className="text-danger text-center">Error: {error?.message  || error1?.message || error2?.message}</p>;
     }
 
-    // if(user || user1){
-    //     ;
-    // }
+    if(user || user1){
+        navigate(from, {replace:true}) ;
+    }
     if(loading || loading1 || sending){
         return (
             <div style={{height: '400px'}} className="d-flex align-items-center justify-content-center mt-5">
@@ -43,16 +43,16 @@ const Login = () => {
             </div>
         )
     }
-    
+
     
     const handleCreateUser = async event => {
            event.preventDefault()
            signInWithEmailAndPassword(email, password);
             const {data} = await axios.post('http://localhost:5000/login',{email});
             localStorage.setItem('accessToken',data.accessToken);
-            navigate(from, {replace:true})
-    }
 
+
+    }
     const handleCreateUserGoggle = (event) => {
         event.preventDefault()
         signInWithGoogle();
