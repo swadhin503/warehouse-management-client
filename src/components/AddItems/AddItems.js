@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import './AddItems.css';
 
+
 const AddItems = () => {
+    const [items,setItems] = useState([]);
+
+    useEffect(()=>{
+        fetch('http://localhost:5000/items')
+        .then(res => res.json())
+        .then(data => setItems(data))
+    },[items])
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
-        console.log(data);
         fetch('http://localhost:5000/items',{
             method: 'POST',
             headers: { 

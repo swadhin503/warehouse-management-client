@@ -45,7 +45,7 @@ const LineChartComp = () => {
         <div className="mt-5 mb-5 container">
             <h2 className="text-center">Our Sales Per Month</h2>
             <div className="mt-5 d-flex justify-content-center">
-                <LineChart width={500} height={400} data={data}>
+                <LineChart width={370} height={400} data={data}>
                 <Line dataKey={'sell'}></Line>
                 <XAxis dataKey="month"></XAxis>
                 <YAxis></YAxis>

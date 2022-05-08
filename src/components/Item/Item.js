@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import useItems from '../hooks/useItems';
 import './item.css'
@@ -7,6 +7,9 @@ const Item = ({item}) => {
     const {_id,img,name,quantity,price} = item;
     // console.log(name)
     const [items,setItems] = useItems();
+    // const [items,setItems] = useState([]);
+
+
     const handleDelete = (id) => {
         const procced = window.confirm('Are you sure you want to delete');
         if (procced){

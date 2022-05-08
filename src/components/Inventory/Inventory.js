@@ -1,28 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
-import './Inventory.css'
+import './Inventory.css';
+
 
 const Inventory = () => {
     const {id} = useParams();
+    const [input,setInput] = useState();
     const [item,setItem] = useState([]);
     useEffect(() => {
         fetch(`http://localhost:5000/items/${id}`)
         .then(res => res.json())
         .then(data => setItem(data))
-    },[])
+    },[item])
     const {img,description,supplier_name,name,quantity,price} = item;
 
     const handleDeliver = (item,id) =>{
         const newQuantity = parseInt(item.quantity)-1;
-        const updatedQuantity = {newQuantity};
-        // console.log(updatedQuantity);
+        
+        const updatedQuantity = {quantity:newQuantity};
+        
         fetch(`http://localhost:5000/items/${id}`,{
             method: 'PUT',
+            body: JSON.stringify(updatedQuantity),
             headers: {
                 'content-type': 'application/json',
-            },
-            body: JSON.stringify(updatedQuantity)
+            }
+            
         })
         .then(res => res.json())
         .then(result => {
@@ -30,7 +34,31 @@ const Inventory = () => {
             alert('Updated Successfully');
         })
     }
-   
+    const handleInput =(event) => {
+        const number = event.target.value;
+        setInput(number);
+    }
+    const handleAdd = (event) => {
+        event.preventDefault()
+        const quantityNumber = parseInt(input);
+        const newQuantity = quantityNumber + parseInt(item.quantity);
+        const updatedQuantity = {quantity:newQuantity};
+        // console.log(updatedQuantity);
+        fetch(`http://localhost:5000/items/${id}`,{
+            method: 'PUT',
+            body: JSON.stringify(updatedQuantity),
+            headers: {
+                'content-type': 'application/json',
+                authorization:`Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(result => {
+            console.log(result)
+            alert('Updated Successfully');
+        })
+    }
+
     const navigate = useNavigate();
     const handleNavigate= () => {
         navigate('/manageItems');
@@ -61,17 +89,17 @@ const Inventory = () => {
                 <div className="mt-5 input-border mb-5">
                     <h3 className="text-center">Restock The Item</h3>
 
-                    <Form>
+                    <Form >
                         <Form.Group className="mb-3 mt-4">
-                        <Form.Control className="w-25 d-block mx-auto" type="text" placeholder="Enter quantity" />
+                        <Form.Control onBlur={handleInput} className="w-25 d-block mx-auto" type="text" placeholder="Enter quantity" />
                        </Form.Group>
                    
-                        <Button  className="d-block mx-auto" variant="dark" type="submit">
+                        <Button onClick={handleAdd} className="d-block mx-auto" variant="dark" type="submit">
                         Add
                         </Button>
                     </Form>
                 </div>
-                <Button onClick={handleNavigate}  className="d-block mx-auto mt-5" variant="dark" type="submit">
+                <Button  onClick={handleNavigate}  className="d-block mx-auto mt-5" variant="dark" type="submit">
                         Manage Inventory
                  </Button>
         </div>

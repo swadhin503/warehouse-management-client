@@ -5,6 +5,7 @@ import img2 from '../../images/banner-2.jpg'
 import img3 from '../../images/banner-3.jpg'
 import Items from '../Items/Items';
 import LineChartComp from '../LineChartComp/LineChartComp';
+import Reviews from '../Reviews/Reviews';
 
 const Home = () => {
     
@@ -50,6 +51,8 @@ const Home = () => {
 
           <Items></Items>
           <LineChartComp></LineChartComp>
+          <Reviews></Reviews>
+          
         </div>
     );
 };
