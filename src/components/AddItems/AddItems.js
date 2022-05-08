@@ -7,13 +7,13 @@ const AddItems = () => {
     const [items,setItems] = useState([]);
 
     useEffect(()=>{
-        fetch('http://localhost:5000/items')
+        fetch('https://mighty-beach-33960.herokuapp.com/items')
         .then(res => res.json())
         .then(data => setItems(data))
     },[items])
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
-        fetch('http://localhost:5000/items',{
+        fetch('https://mighty-beach-33960.herokuapp.com/items',{
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json'

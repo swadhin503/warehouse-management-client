@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 import useItems from '../hooks/useItems';
-import './item.css'
+import './item.css';
 
 const Item = ({item}) => {
     const {_id,img,name,quantity,price} = item;
@@ -13,7 +13,7 @@ const Item = ({item}) => {
     const handleDelete = (id) => {
         const procced = window.confirm('Are you sure you want to delete');
         if (procced){
-            const url = `http://localhost:5000/items/${id}`;
+            const url = `https://mighty-beach-33960.herokuapp.com/items/${id}`;
             fetch(url,{
                 method: 'DELETE',  
             })

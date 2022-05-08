@@ -9,7 +9,7 @@ const Inventory = () => {
     const [input,setInput] = useState();
     const [item,setItem] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/items/${id}`)
+        fetch(`https://mighty-beach-33960.herokuapp.com/items/${id}`)
         .then(res => res.json())
         .then(data => setItem(data))
     },[item])
@@ -20,7 +20,7 @@ const Inventory = () => {
         
         const updatedQuantity = {quantity:newQuantity};
         
-        fetch(`http://localhost:5000/items/${id}`,{
+        fetch(`https://mighty-beach-33960.herokuapp.com/items/${id}`,{
             method: 'PUT',
             body: JSON.stringify(updatedQuantity),
             headers: {
@@ -44,7 +44,7 @@ const Inventory = () => {
         const newQuantity = quantityNumber + parseInt(item.quantity);
         const updatedQuantity = {quantity:newQuantity};
         // console.log(updatedQuantity);
-        fetch(`http://localhost:5000/items/${id}`,{
+        fetch(`https://mighty-beach-33960.herokuapp.com/items/${id}`,{
             method: 'PUT',
             body: JSON.stringify(updatedQuantity),
             headers: {
